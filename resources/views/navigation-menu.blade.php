@@ -10,7 +10,7 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{asset ('/')}}" :active="request()->routeIs('/')">
+                    <x-jet-nav-link href="{{asset ('/dashboard/home')}}" :active="request()->routeIs('/')">
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
                 </div>
