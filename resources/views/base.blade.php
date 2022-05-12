@@ -66,7 +66,7 @@
             </ul>
       </li>
       <li class="sidebar-list-item">
-        <a href="{{asset('/usuarios')}}">
+        <a href="{{asset('/usuarios_listar')}}">
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-pie-chart">
            
             <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />

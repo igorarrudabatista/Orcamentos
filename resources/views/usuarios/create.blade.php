@@ -119,7 +119,7 @@
       <div class="product-cell what"><span class="cell-label">Ação:</span>  
   
   
-        <form action="{{asset('/usuarios/')}}/{{$usu->id}}" method="POST">
+        <form action="{{asset('/usuarios')}}/{{$usu->id}}" method="POST">
             
               @csrf
             @method('DELETE')
