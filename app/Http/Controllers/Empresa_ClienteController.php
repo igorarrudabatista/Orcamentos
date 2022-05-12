@@ -16,6 +16,9 @@ class Empresa_ClienteController extends Controller
 
     public function store (Request $request) {
 
+        toast('Cliente criado com sucesso!','success');
+
+
         $criar_empresa_cliente =  new Empresa_cliente();
 
         $criar_empresa_cliente -> Nome_Empresa       = $request->Nome_Empresa;
@@ -50,8 +53,7 @@ class Empresa_ClienteController extends Controller
 
         $criar_empresa = Empresa_cliente::all();
 
-        return redirect('/empresa/show_clientes')->with('msg', 'Cliente cadastrado com sucesso'); 
-    
+        return redirect('/empresa/show_clientes');
     }
 
     public function show() {
@@ -85,21 +87,24 @@ class Empresa_ClienteController extends Controller
     }
 
     public function update (Request $request){
+        toast('Cliente editado com sucesso!','success');
+
 
         Empresa_cliente::findOrFail($request->id)
        ->update($request->all());
 
 
-        return redirect('/empresa/show_clientes')->with('msg', 'Cliente editado com sucesso!');
-
+        return redirect('/empresa/show_clientes');
     }
 
 
 
     public function destroy($id){
+        toast('Cliente deletado com sucesso!','error');
+
 
         Empresa_cliente::findOrFail($id) -> delete();
-        return redirect('/empresa/show_clientes')->with('msg', 'Cliente deletado com sucesso!');
+        return redirect('/empresa/show_clientes');
     }
 
 }

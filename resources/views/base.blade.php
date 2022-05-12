@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-br" >
 <head>
@@ -10,6 +11,8 @@
 <link rel="stylesheet" href="{{asset('/css/style.css')}}">
 <link rel="stylesheet" href="{{asset('/css/upload-style.css')}}">
 <link rel="stylesheet" href="{{asset('/css/dash-style.css')}}">
+
+
 
 </head>
 <body>
@@ -39,7 +42,23 @@
  <span class="caret"> </span> </a>
             <ul class="dropdown-menu sidebar-list">
                 {{-- <li class="sidebar-list-item"> <a href="{{asset('/cadastrar_empresa')}}">Cadastrar a Minha Empresa</a></li> --}}
-                <li class="sidebar-list-item"> <a href="{{asset('/minha_empresa/form_empresa')}}">Ver a Minha Empresa</a></li>
+                <li class="sidebar-list-item"> <a href="{{asset('/minha_empresa/form_empresa')}}">Minha Empresa</a></li>
+
+            </ul>
+      </li>
+
+      <li class="dropdown sidebar-list-item">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"> 
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="19" viewBox="0 0 22 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-pie-chart">
+
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+              <path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg>
+               <span class="nav-label"> Clientes</span>
+ <span class="caret"> </span> </a>
+            <ul class="dropdown-menu sidebar-list">
+                {{-- <li class="sidebar-list-item"> <a href="{{asset('/cadastrar_empresa')}}">Cadastrar a Minha Empresa</a></li> --}}
                 <li class="sidebar-list-item"> <a href="{{asset('/empresa/form_empresa_cliente')}}"> Cadastrar Clientes </a></li>
                 <li class="sidebar-list-item"> <a href="{{asset('/empresa/show_clientes')}}"> Ver Clientes </a></li>
 
@@ -47,13 +66,10 @@
       </li>
       <li class="sidebar-list-item">
         <a href="{{asset('/usuarios')}}">
-          <svg class="svg-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather ">
-            <path fill="none" d="M14.023,12.154c1.514-1.192,2.488-3.038,2.488-5.114c0-3.597-2.914-6.512-6.512-6.512
-              c-3.597,0-6.512,2.916-6.512,6.512c0,2.076,0.975,3.922,2.489,5.114c-2.714,1.385-4.625,4.117-4.836,7.318h1.186
-              c0.229-2.998,2.177-5.512,4.86-6.566c0.853,0.41,1.804,0.646,2.813,0.646c1.01,0,1.961-0.236,2.812-0.646
-              c2.684,1.055,4.633,3.568,4.859,6.566h1.188C18.648,16.271,16.736,13.539,14.023,12.154z M10,12.367
-              c-2.943,0-5.328-2.385-5.328-5.327c0-2.943,2.385-5.328,5.328-5.328c2.943,0,5.328,2.385,5.328,5.328
-              C15.328,9.982,12.943,12.367,10,12.367z"></path>
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-pie-chart">
+           
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+            <circle cx="9" cy="7" r="4" />
           </svg>
           <span>Usuários</span>
         </a>
@@ -221,6 +237,9 @@
   
   
   </script>
+
+@include('sweetalert::alert')
+
 
 </body>
 </html>

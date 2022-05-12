@@ -55,7 +55,7 @@
 
 
 
-    <form action="{{asset('/empresa/update/')}}{{$editar_empresa->id}}" method="POST" enctype="multipart/form-data">
+    <form action="{{asset('/empresa/update/')}}/{{$editar_empresa->id}}" method="POST" enctype="multipart/form-data">
       @csrf
       @method('PUT')
   <div class="form-row">
@@ -133,7 +133,7 @@
 
 <div class="upload">
   <input type="file" title="" id="image" name="image"  class="drop-here">
-  <div class="text text-drop"><img src="{{asset('/img/empresa/')}}/{{$editar_empresa->image}}"></div>
+  <div class="text text-drop"><img src="{{asset('/img/empresa/')}}/{{$editar_empresa->image}}" width="250px"></div>
   <div class="text text-upload">Enviando</div>
   <svg class="progress-wrapper" width="300" height="300">
     <circle class="progress" r="115" cx="150" cy="150"></circle>

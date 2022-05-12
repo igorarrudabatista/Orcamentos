@@ -44,15 +44,14 @@ Route::get('base', function () {
     return view('base');
 }); 
 //Dashboard
-Route::get('/dash',                    [HomeController::class,     'home']);
+Route::get('/',                                   [HomeController::class,     'home']);
 
 // Usuários
+Route::get('/usuarios',                           [UsuariosController::class, 'index']);
 Route::get('/usuarios',                           [UsuariosController::class, 'create']);
 Route::get('/usuarios/edit/{id}',                 [UsuariosController::class, 'edit']);
-Route::get('/usuarios/update/{id}',               [UsuariosController::class, 'update']);
-Route::delete('/usuarios/{id}',                   [UsuariosController::class, 'destroy']);
-Route::get('/usuarios',                           [UsuariosController::class, 'index']);
 Route::post('/usuarios',                          [UsuariosController::class, 'store']);
+Route::put('/usuarios/update/{id}',               [UsuariosController::class, 'update']);
 
 
 //Cadastro de Produtos

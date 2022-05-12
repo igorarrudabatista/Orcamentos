@@ -37,6 +37,9 @@ class EmpresaController extends Controller
 
     public function store (Request $request) {
 
+        toast('Sua empresa foi criado com sucesso!','success');
+
+
         $criar_empresa =  new Empresa;
 
         $criar_empresa -> Nome_Empresa              = $request->Nome_Empresa;
@@ -69,7 +72,7 @@ class EmpresaController extends Controller
 
         $criar_empresa = Empresa::all();
 
-        return redirect('minha_empresa/form_empresa')->with('msg', 'Empresa cadastrada com sucesso'); 
+        return redirect('minha_empresa/form_empresa');
     
     }
 
@@ -96,6 +99,9 @@ class EmpresaController extends Controller
   
 
     public function update (Request $request, $id){
+
+        toast('Sua empresa foi editada com sucesso!','success');
+
 
                         $criar_empresa = Empresa::find($id);
                         $criar_empresa -> Nome_Empresa              = $request->Nome_Empresa;
@@ -134,7 +140,7 @@ class EmpresaController extends Controller
 
         $criar_empresa = Empresa::all();
 
-        return redirect('minha_empresa/form_empresa')->with('msg', 'Empresa editada com sucesso!');
+        return redirect('minha_empresa/form_empresa');
 
     }
 

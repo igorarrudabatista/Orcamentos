@@ -1,4 +1,7 @@
+@include('sweetalert::alert')
 @extends('base')
+@include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
+
 
 @section('content')
   <div class="app-content">

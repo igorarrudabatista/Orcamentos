@@ -44,6 +44,8 @@ class OrcamentoController extends Controller
 
     public function store(Request $request)
     {
+        toast('Orçamento criado com sucesso!','success');
+
        // dd($request->all());
        $order = Orcamento::create($request->all());
 
@@ -59,7 +61,7 @@ class OrcamentoController extends Controller
         
        
     
-        return redirect('/orcamento/show_orcamento')->with('msg', 'Orçamento criado com sucesso');
+        return redirect('/orcamento/show_orcamento');
     }
     
 
@@ -118,6 +120,8 @@ class OrcamentoController extends Controller
 
     public function update(Request $request)
     {
+        toast('Orçamento editado com sucesso!','success');
+
 
        Orcamento::findOrFail($request->id)->update();
 
@@ -136,8 +140,7 @@ class OrcamentoController extends Controller
          }
         
 
-        return redirect('/orcamento/show_orcamento')
-        ->with('msg', 'Orçamento editado com sucesso!');
+        return redirect('/orcamento/show_orcamento');
     }
 
     public function gerar_pdf($id)
@@ -282,9 +285,10 @@ class OrcamentoController extends Controller
 
     public function destroy($id)
     {
+        toast('Orçamento deletado com sucesso!','error');
 
         Orcamento::findOrFail($id)->delete();
-        return redirect('/orcamento/show_orcamento')->with('msg', 'Orçamento deletado com sucesso!');
+        return redirect('/orcamento/show_orcamento');
     }
 
 

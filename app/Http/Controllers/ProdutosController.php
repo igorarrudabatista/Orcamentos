@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Create;
 use App\Models\Produto;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ProdutosController extends Controller
 {
     public function produtos() {
+
         
         $produtos = Produto::all();
 
@@ -27,6 +29,8 @@ class ProdutosController extends Controller
     }
     
     public function store (Request $request) {
+        toast('Produto criado com sucesso!','success');
+
 
         $criar_produto =  new Produto;
 
@@ -57,7 +61,10 @@ class ProdutosController extends Controller
 
         $criar_produto = Produto::all();
 
-        return redirect('/produtos/produtos')->with('msg', 'Produto cadastrado com sucesso');
+     //   Alert::success('Congrats', 'You\'ve Successfully Registered');
+
+
+       return redirect('/produtos/produtos');
 
          
 
@@ -81,6 +88,7 @@ class ProdutosController extends Controller
     }
 
     public function update (Request $request){
+        toast('Produto editado com sucesso!','success');
 
            $data = $request->all();
   
@@ -108,9 +116,12 @@ class ProdutosController extends Controller
     }
 
     public function destroy($id){
+       // Alert::warning('Produto deletado', '');
+       toast('Produto deletado com sucesso!','error');
+
 
         Produto::findOrFail($id) -> delete();
-        return redirect('/produtos/produtos')->with('msg', 'Produto deletado com sucesso!');
+        return redirect('/produtos/produtos');
     }
 
 }
