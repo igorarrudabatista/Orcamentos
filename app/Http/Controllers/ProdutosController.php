@@ -29,40 +29,38 @@ class ProdutosController extends Controller
     }
     
     public function store (Request $request) {
-        toast('Produto criado com sucesso!','success');
-
-
+        
+        
         $criar_produto =  new Produto;
-
+        
         $criar_produto -> Nome_Produto       = $request->Nome_Produto;
         $criar_produto -> Categoria_Produto  = $request->Categoria_Produto;
         $criar_produto -> Status_Produto     = $request->Status_Produto;
         $criar_produto -> Preco_Produto      = $request->Preco_Produto;
         $criar_produto -> Estoque_Produto    = $request->Estoque_Produto;
         $criar_produto -> Quantidade_Produto = $request->Quantidade_Produto;
-
-
-                // Imagem do produto upload
+        
+        
+        // Imagem do produto upload
         if ($request->hasFile('image')&& $request->file('image')->isValid()){
-
+            
             $requestImage = $request -> image;
-
+            
             $extension = $requestImage-> extension();
-
+            
             $imageName = md5($requestImage -> getClientOriginalName() . strtotime("now")) . "." . $extension;
-
+            
             $request -> image->move(public_path('img/produtos'), $imageName);
-
+            
             $criar_produto -> image = $imageName;
-
+            
         }
-
+        
         $criar_produto ->save();
-
+        
         $criar_produto = Produto::all();
-
-     //   Alert::success('Congrats', 'You\'ve Successfully Registered');
-
+        
+        toast('Produto criado com sucesso!','success');
 
        return redirect('/produtos/produtos');
 
@@ -88,39 +86,37 @@ class ProdutosController extends Controller
     }
 
     public function update (Request $request){
+        
+        $data = $request->all();
+        
+        
+        // Imagem do produto upload
+        if ($request->hasFile('image')&& $request->file('image')->isValid()){
+            
+            $requestImage = $request -> image;
+            
+            $extension = $requestImage-> extension();
+            
+            $imageName = md5($requestImage -> getClientOriginalName() . strtotime("now")) . "." . $extension;
+            
+            $request -> image->move(public_path('img/produtos'), $imageName);
+            
+            $data['image'] = $imageName;
+            
+        }
         toast('Produto editado com sucesso!','success');
 
-           $data = $request->all();
-  
-
-          // Imagem do produto upload
-          if ($request->hasFile('image')&& $request->file('image')->isValid()){
-
-            $requestImage = $request -> image;
-
-            $extension = $requestImage-> extension();
-
-            $imageName = md5($requestImage -> getClientOriginalName() . strtotime("now")) . "." . $extension;
-
-            $request -> image->move(public_path('img/produtos'), $imageName);
-
-            $data['image'] = $imageName;
-
-        }
-
         Produto::findOrFail($request->id) -> update ($data);
-        return redirect('/produtos/produtos')->with('msg', 'Produto editado com sucesso!');
+        return redirect('/produtos/produtos');
 
 
 
     }
 
     public function destroy($id){
-       // Alert::warning('Produto deletado', '');
+   
+       Produto::findOrFail($id) -> delete();
        toast('Produto deletado com sucesso!','error');
-
-
-        Produto::findOrFail($id) -> delete();
         return redirect('/produtos/produtos');
     }
 

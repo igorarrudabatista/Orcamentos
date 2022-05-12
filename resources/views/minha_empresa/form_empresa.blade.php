@@ -307,12 +307,10 @@ form input[type=submit] {
 
       
       
-      
-      @if ($criar_empresa == null )
-      okokokokokok
-      @else
-      não onke
+      @if ($criar_empresa === null) 
+      aaa
       @endif
+
       
       {{-- 
         @if (is_null($criar_empresas->id)) 

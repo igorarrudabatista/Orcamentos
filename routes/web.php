@@ -32,10 +32,10 @@ Route::middleware([
 
     
 
-    Route::get('/dashboard', function () {return view('/minha_empresa/cadastrar_empresa'); 
+    Route::get('/', function () {return view('/dashboard/home'); 
     })->name('dashboard');
-
-    //Route::get('/', [HomeController::class, 'home']);
+    
+   // Route::get('/', [HomeController::class, 'home']);
 
 
 
@@ -44,10 +44,10 @@ Route::get('base', function () {
     return view('base');
 }); 
 //Dashboard
-Route::get('/',                                   [HomeController::class,     'home']);
+Route::get('/dashboard',                                   [HomeController::class,     'home']);
 
 // Usuários
-Route::get('/usuarios',                           [UsuariosController::class, 'index']);
+Route::get('/usuarios_listar',                           [UsuariosController::class, 'index']);
 Route::get('/usuarios',                           [UsuariosController::class, 'create']);
 Route::get('/usuarios/edit/{id}',                 [UsuariosController::class, 'edit']);
 Route::post('/usuarios',                          [UsuariosController::class, 'store']);
@@ -65,7 +65,6 @@ Route::delete('/produtos/{id}',                  [ProdutosController::class,   '
 //Minha Empresa
 Route::get('/minha_empresa/form_empresa',         [EmpresaController::class,    'create']);
 Route::post('/minha_empresa',                     [EmpresaController::class,    'store']);
-//Route::get('/minha_empresa',                      [EmpresaController::class,  'show']);
 Route::get('/minha_empresa/form_empresa/edit/{id}', [EmpresaController::class,  'edit']);
 Route::put('/minha_empresa/form_empresa/update/{id}', [EmpresaController::class,'update']);
 

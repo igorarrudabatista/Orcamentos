@@ -12,7 +12,7 @@ class UsuariosController extends Controller
         $user = User::all();
 
         return view('usuarios.create', [
-            'user'            => $user
+            'user' => $user
         ]);
     }
 
@@ -46,7 +46,7 @@ class UsuariosController extends Controller
 
              $imageName = md5($requestImage -> getClientOriginalName() . strtotime("now")) . "." . $extension;
 
-             $request -> image->move(public_path('img/profile'), $imageName);
+             $request -> image->move(public_path('img/produtos'), $imageName);
 
              $usuario -> image = $imageName;
 
@@ -70,49 +70,39 @@ class UsuariosController extends Controller
     
     
         }
-
-
     
-
-        return User::create([
-            'name' => $input['name'],
-            'email' => $input['email'],
-            'password' => Hash::make($input['password']),
-        ]);
-
-        
-         public function update (Request $request){
+        public function update (Request $request){
     
-                $data = $request->all();
+               $data = $request->all();
       
     
-                Imagem do produto upload
-               if ($request->hasFile('image')&& $request->file('image')->isValid()){
+              // Imagem do produto upload
+              if ($request->hasFile('image')&& $request->file('image')->isValid()){
     
-                 $requestImage = $request -> image;
+                $requestImage = $request -> image;
     
-                 $extension = $requestImage-> extension();
+                $extension = $requestImage-> extension();
     
-                 $imageName = md5($requestImage -> getClientOriginalName() . strtotime("now")) . "." . $extension;
+                $imageName = md5($requestImage -> getClientOriginalName() . strtotime("now")) . "." . $extension;
     
-                 $request -> image->move(public_path('img/profile'), $imageName);
+                $request -> image->move(public_path('img/produtos'), $imageName);
     
-                 $data['image'] = $imageName;
+                $data['image'] = $imageName;
     
-             }
+            }
     
-             User::findOrFail($request->id) -> update ($data);
-             return redirect('/usuarios')->with('msg', 'Produto editado com sucesso!');
+            usuario::findOrFail($request->id) -> update ($data);
+            return redirect('/produtos/produtos')->with('msg', 'Produto editado com sucesso!');
     
     
     
-         }
+        }
     
-        // public function destroy($id){
+        public function destroy($id){
     
-        //     User::findOrFail($id) -> delete();
-        //     return redirect('/usuarios')->with('msg', 'Usuário deletado com sucesso!');
-        // }
+            User::findOrFail($id) -> delete();
+            return redirect('/usuarios')->with('msg', 'Usuário deletado com sucesso!');
+        }
 
         
     }

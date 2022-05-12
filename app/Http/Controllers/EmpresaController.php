@@ -17,7 +17,9 @@ class EmpresaController extends Controller
 
 
              
+        //$empresa_existe = Empresa::where('Nome_Empresa', '=', Empresa::get('id'))->first();
 
+       // $empresa_existe = (Empresa::has('Nome_Empresa', $Nome_Empresa)->exists());
 
 
 
@@ -29,6 +31,7 @@ class EmpresaController extends Controller
         [
         'criar_empresa'=> $criar_empresa,
         'orcamento' => $orcamento,
+      //  'empresa_existe' => $empresa_existe,
             
         
         ]);
@@ -100,7 +103,6 @@ class EmpresaController extends Controller
 
     public function update (Request $request, $id){
 
-        toast('Sua empresa foi editada com sucesso!','success');
 
 
                         $criar_empresa = Empresa::find($id);
@@ -134,6 +136,7 @@ class EmpresaController extends Controller
 
      
 
+        toast('Sua empresa foi editada com sucesso!','success');
 
 
 

@@ -23,7 +23,7 @@ class CreateProdutosTable extends Migration
             $table->string('Quantidade_Produto');
 
 
-            $table->string('image');
+            $table->string('image')->nullable();
 
 
             $table->timestamps();

@@ -8,6 +8,10 @@
         Antes de iniciar, cadaste a sua empresa aqui!
     </div>
 
+ 
+
+
+    </div>
     <div class="mt-6 text-gray-500">
         <form method="POST" action="{{asset ('/minha_empresa')}}" enctype="multipart/form-data">
             @csrf
@@ -47,6 +51,21 @@
 </div>
 
 {{-- 
+
+
+
+
+
+          
+      
+      @if ($criar_empresa == null )
+      okokokokokok
+      @else
+      não onke
+      @endif
+
+
+
 <div class="bg-gray-200 bg-opacity-25 grid grid-cols-1 md:grid-cols-2">
     <div class="p-6">
         <div class="flex items-center">
