@@ -16,7 +16,7 @@
 }
 
 .card--1 .card__img, .card--1 .card__img--hover {
-    background-image: url('{{asset('/img/dashboard/orders.jpg')}}');
+    background-image: url('{{asset('/img/empresa/empresa.png')}}');
 }
 
 .card--2 .card__img, .card--2 .card__img--hover {
@@ -174,7 +174,7 @@ border-bottom-right-radius: 12px;
            <div class="card__img--hover"></div>
          </a>
         <div class="card__info">
-          <span class="card__category"> <center> Recipe </center></span>
+          <span class="card__category"> <center>  </center></span>
           <h3 class="card__title">Sua empresa</h3>
           <span class="card__by">Informações: 
             @foreach($empresa as $empresas)
@@ -198,7 +198,7 @@ border-bottom-right-radius: 12px;
            <div class="card__img--hover"></div>
          </a>
         <div class="card__info">
-          <span class="card__category"> Número</span>
+          <span class="card__category"> </span>
           <h3 class="card__title">Clientes</h3>
         </div>
       </article>  
@@ -218,7 +218,7 @@ border-bottom-right-radius: 12px;
            <div class="card__img--hover"></div>
          </a>
         <div class="card__info">
-          <span class="card__category"> Travel</span>
+          <span class="card__category"> </span>
           <h3 class="card__title">Produtos</h3>
         </div>
       </article>  
@@ -238,7 +238,7 @@ border-bottom-right-radius: 12px;
            <div class="card__img--hover"></div>
          </a>
         <div class="card__info">
-          <span class="card__category"> Travel</span>
+          <span class="card__category"> </span>
           <h3 class="card__title">Orçamentos</h3>
         </div>
       </article>  

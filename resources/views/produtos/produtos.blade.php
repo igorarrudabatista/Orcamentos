@@ -124,7 +124,9 @@
 
         </div>
       </div>
-@endforeach
+      
+      @endforeach
+      {{-- {{ $produtos->links() }} --}}
 
         </div>
       </div>

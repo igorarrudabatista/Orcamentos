@@ -13,6 +13,7 @@ class ProdutosController extends Controller
 
         
         $produtos = Produto::all();
+       // $produtos = Produto::paginate(10);
 
         $search = request('search');
 

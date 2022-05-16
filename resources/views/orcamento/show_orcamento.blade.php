@@ -101,7 +101,7 @@
         </button>
           <div class="product-cell image">
           <a href="{{asset('/orcamento/edit/')}}/{{$order->Numero_Orcamento}}">
-             <img src="{{asset('/img/orcamento/orcamento.jpeg')}}" > </a>
+             <img src="{{asset('/img/empresa/')}}/{{$order->empresa_cliente->image}}" > </a>
          
     
 
@@ -115,7 +115,7 @@
         <div class="product-cell acao"><span class="cell-label">Ação:</span>  
         <a href="{{asset('/orcamento/edit/')}}/{{$order->id}}" class="btn btn-info edit-btn"> <ion-icon name="create-outline"></ion-icon> Editar </a>&nbsp
         
-        <form action="{{asset('/orcamento/')}}/{{$order->id}}" method="POST">
+        <form action="{{asset('/orcamento')}}/{{$order->id}}" method="POST">
         @csrf
         @method('DELETE')
 

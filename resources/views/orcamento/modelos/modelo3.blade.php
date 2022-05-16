@@ -56,8 +56,8 @@ body {
                     <div class="pull-right">
                          <a class="btn btn-sm btn-info" href="#" data-abc="true" value="Print this page" onClick="window.print()">
                             <i class="fa fa-print mr-1"></i> Imprimir</a>
-                             <a class="btn btn-sm btn-info" href="/orcamento/pdf" data-abc="true">
-                                 <i class="fa fa-file-text-o mr-1"></i> Salvar</a>
+                             {{-- <a class="btn btn-sm btn-info" href="/orcamento/pdf" data-abc="true">
+                                 <i class="fa fa-file-text-o mr-1"></i> Salvar</a> --}}
                     </div>
                 </div>
                 <div class="card-body">
@@ -144,7 +144,7 @@ body {
                                     </tr>
                                 </tbody>
                             </table>
-                            <div class="pull-right"> <a class="btn btn-sm btn-success" href="#" data-abc="true"><i class="fa fa-paper-plane mr-1"></i> Enviar p/ Whatsapp</a>
+                            <div class="pull-right"> <a class="btn btn-sm btn-success" href="{{asset ('https://api.whatsapp.com/send?phone=55')}}{{$orcamento->empresa_cliente->Telefone}}&text=Segue orçamento..." target="_blank" data-abc="true"><i class="fa fa-paper-plane mr-1"></i> Envia mensagem para este cliente no Whatsapp</a>
                             </div>
                         </div>
                     </div>
