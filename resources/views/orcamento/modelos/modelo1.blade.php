@@ -1,94 +1,246 @@
 <style>
+    @page {
+  bleed: 1cm;
+  size: A4 portrait;
+  size:  auto;   /* auto is the initial value */
+  margin-bottom: 50pt;
+  margin-top: 0cm;
+  font-size: 12pt;
 
-   
-body {
-    background-color: #eee
+  #content, #page {
+  width: 100%;
+  margin: 0;
+  float: none;
+  }
 }
 
-.fs-12 {
-    font-size: 12px
+
+@media print {
+  .page {
+    border: initial;
+    border-radius: initial;
+    width: initial;
+    min-height: initial;
+    box-shadow: initial;
+    background: initial;
+    page-break-after: always;
+  }
+
+  table{
+    page-break-inside: auto;
+  }
+
+  tr.last-row {
+      background-color: #555!important;
+  }
+
+  tr.last-row > th, tr.last-row > td {
+    background-color: unset!important;
+  }
+
+  div.page-break{
+    page-break-before: auto;
+  }
 }
 
-.fs-15 {
-    font-size: 15px
+.gray{
+  color: #333;
 }
 
-.name {
-    margin-bottom: -2px
+.gray-ish{
+  color: #666;
 }
 
-.product-details {
-    margin-top: 13px
+.almost-gray{
+  color: #999;
 }
-    </style>
+
+body{
+  background-color: #eee;
+  padding-top: 25px;
+  -webkit-print-color-adjust: exact !important;
+  height: 100%;
+  margin-top: 40px;
+}
+
+div.container{
+  background-color: white;
+  border-radius: 10px;
+  height: 100%;
+  position: relative;
+  margin-top: 50px;
+}
+
+div.invoice-header{
+  background-color: #444;
+  color: white;
+  border-bottom: 3px solid rgb(255, 77, 77);
+}
+
+div.invoice-header > div > p{
+  font-size: 1.2rem;
+  font-weight: 350;
+}
+
+div.invoice-header > div > h1{
+  font-size: 4rem;
+}
+
+div.invoice-table{
+  border-top: 3px solid rgb(255, 77, 77);
+}
+
+div.invoice-table > table.table > thead, div.invoice-table > table.table > thead.thead > tr, div.invoice-table > table.table > thead.thead > tr > th {
+  border-top: none;
+}
+
+div.total-field{
+  position: relative;
+}
+
+h5.due-date{
+  position: absolute;
+  bottom: 10px;
+  right: 15px;
+}
+
+div.sub-table{
+  border-left: 3px solid rgb(255, 77, 77);
+  padding-left: 0;
+}
+
+div.sub-table > table{
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+tr.last-row{
+  margin-top: 25px;
+  background-color: #555;
+  color: white;
+  border-top: 3px solid rgb(255, 77, 77);
+}
+
+p.footer{
+    bottom: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    padding-top: 15px;
+    border-top: 3px solid red;
+}
+</style>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css'>
+
+<div class="container">
+    <div class="row invoice-header px-3 py-2">
+      <div class="col-4">
+        <p>{{$orcamento->empresa->Nome_Empresa ?? ''}}     </p>
+        <h1>ORÇAMENTO</h1>
+      </div>
+      <div class="col-4 text-right">
+        <p>{{$orcamento->empresa->Telefone ?? ''}}</p>
+        <p>{{$orcamento->empresa->Email ?? ''}}</p>
+        <p>{{$orcamento->empresa->Site ?? ''}}</p>
+      </div>
+      <div class="col-4 text-right">
+        <p>{{$orcamento->empresa->Endereco ?? ''}}</p>
+        <p>{{$orcamento->empresa->Cidade ?? ''}}</p>
+        <p>{{$orcamento->empresa->Cnpj ?? ''}}</p>
+      </div>
+    </div>
+  
+    <div class="invoice-content row px-5 pt-5">
+      <div class="col-3">
+        <h5 class="almost-gray mb-3">Orçamento para:</h5>
+        <p class="gray-ish"> {{$orcamento->empresa_cliente->Nome_Empresa ?? ''}}</p>
+        <p class="gray-ish">{{$orcamento->empresa_cliente->Endereco ?? ''}} | {{$orcamento->empresa_cliente->Cidade ?? ''}} - {{$orcamento->empresa_cliente->Estado}}</p>
+        <p class="gray-ish">CNPJ:  {{$orcamento->empresa_cliente->Cnpj ?? ''}}</p>
+      </div>
+      <div class="col-3">
+        <h5 class="almost-gray">N° Orçamento:</h5>
+        <p class="gray-ish"># {{$orcamento->Numero_Orcamento ?? ''}}</p>
+  
+        <h5 class="almost-gray">Data:</h5>
+        <p class="gray-ish"> {{$orcamento->Data ?? ''}} </p>
+     
+      </div>
+
+ 
+
+
+      <div class="col-6 text-right total-field">
+        <h4 class="almost-gray"> </h4>
+        <h1 class="gray-ish">Validade: {{$orcamento->Validade ?? ''}} Dias </h1>
+        <h5 class="almost-gray due-date">Garantia: {{$orcamento->Garantia ?? ''}} Dias</h5>
+      </div>
+    </div>
+  
+    <div class="row mt-5">
+      <div class="col-10 offset-1 invoice-table pt-1">
+        <table class="table table-hover">
+              <thead class="thead splitForPrint">
+                <tr>
+                  <th scope="col gray-ish">NO.</th>
+                  <th scope="col gray-ish">Item</th>
+                  <th scope="col gray-ish">Qty.</th>
+                  <th scope="col gray-ish">Preço Unit.</th>
+                  <th class="text-right" scope="col gray-ish">Total</th>
+                </tr>
+              </thead>
+
+              <?php $total2 = 0 ;?>
+
+              @foreach($orcamento->produto as $item)
+              <tbody>
+                <tr>
+                  <th scope="row">{{$item->id}}</th>
+                  <td class="item">{{$item->Nome_Produto}}</td>
+                  <td>{{$quantidade = $item->pivot['Quantidade'] }}</td>
+                  <td class="unit">R$ {{$preco= $item['Preco_Produto']}} </td>
+
+                  <td class="text-right">R$ {{$total1 = $preco * (int)$quantidade}} <?php $total2 += $total1; ?> </td>
+               
+                </tr>
+
     
-    <!DOCTYPE html>
-    <html lang="pt-br">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-    </head>
-    <body>
-        <div class="container mt-5 mb-5">
-            <div class="d-flex justify-content-center row">
-                <div class="col-md-10">
-                    <div class="receipt bg-white p-3 rounded"><img src="https://i.imgur.com/zCAnG06.png" width="120">
-                        <h4 class="mt-2 mb-3">Your order is confirmed!</h4>
-                        <h6 class="name">Hello John,</h6><span class="fs-12 text-black-50">your order has been confirmed and will be shipped in two days</span>
-                        <hr>
-                        <div class="d-flex flex-row justify-content-between align-items-center order-details">
-                            <div><span class="d-block fs-12">Order date</span><span class="font-weight-bold">12 March 2020</span></div>
-                            <div><span class="d-block fs-12">Order number</span><span class="font-weight-bold">OD44434324</span></div>
-                            <div><span class="d-block fs-12">Payment method</span><span class="font-weight-bold">Credit card</span><img class="ml-1 mb-1" src="https://i.imgur.com/ZZr3Yqj.png" width="20"></div>
-                            <div><span class="d-block fs-12">Shipping Address</span><span class="font-weight-bold text-success">New Delhi</span></div>
-                        </div>
-                        <hr>
-                        <div class="d-flex justify-content-between align-items-center product-details">
-                            <div class="d-flex flex-row product-name-image"><img class="rounded" src="https://i.imgur.com/GsFeDLn.jpg" width="80">
-                                <div class="d-flex flex-column justify-content-between ml-2">
-                                    <div><span class="d-block font-weight-bold p-name">Ralco formal shirts for men</span><span class="fs-12">Clothes</span></div><span class="fs-12">Qty: 1pcs</span>
-                                </div>
-                            </div>
-                            <div class="product-price">
-                                <h5>$70</h5>
-                            </div>
-                        </div>
-                        <div class="d-flex justify-content-between align-items-center product-details">
-                            <div class="d-flex flex-row product-name-image"><img class="rounded" src="https://i.imgur.com/b7Ve3fJ.jpg" width="80">
-                                <div class="d-flex flex-column justify-content-between ml-2">
-                                    <div><span class="d-block font-weight-bold p-name">Ralco formal Belt for men</span><span class="fs-12">Accessories</span></div><span class="fs-12">Qty: 1pcs</span>
-                                </div>
-                            </div>
-                            <div class="product-price">
-                                <h6>$50</h6>
-                            </div>
-                        </div>
-                        <div class="mt-5 amount row">
-                            <div class="d-flex justify-content-center col-md-6"><img src="https://i.imgur.com/AXdWCWr.gif" width="250" height="100"></div>
-                            <div class="col-md-6">
-                                <div class="billing">
-                                    <div class="d-flex justify-content-between"><span>Subtotal</span><span class="font-weight-bold">$120</span></div>
-                                    <div class="d-flex justify-content-between mt-2"><span>Shipping fee</span><span class="font-weight-bold">$15</span></div>
-                                    <div class="d-flex justify-content-between mt-2"><span>Tax</span><span class="font-weight-bold">$5</span></div>
-                                    <div class="d-flex justify-content-between mt-2"><span class="text-success">Discount</span><span class="font-weight-bold text-success">$25</span></div>
-                                    <hr>
-                                    <div class="d-flex justify-content-between mt-1"><span class="font-weight-bold">Total</span><span class="font-weight-bold text-success">$165</span></div>
-                                </div>
-                            </div>
-                        </div><span class="d-block">Expected delivery date</span><span class="font-weight-bold text-success">12 March 2020</span><span class="d-block mt-3 text-black-50 fs-15">We will be sending a shipping confirmation email when the item is shipped!</span>
-                        <hr>
-                        <div class="d-flex justify-content-between align-items-center footer">
-                            <div class="thanks"><span class="d-block font-weight-bold">Thanks for shopping</span><span>Amazon team</span></div>
-                            <div class="d-flex flex-column justify-content-end align-items-end"><span class="d-block font-weight-bold">Need Help?</span><span>Call - 974493933</span></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-    </body>
-    </html>
-    
-    
+ 
+              </tbody>
+              @endforeach
+
+            </table>
+      </div>
+    </div>
+  <div class="row invoice_details">
+     <!-- invoiced to details -->
+     <div class="col-4 offset-1 pt-3">
+       <h4 class="gray-ish">Descrição</h4>
+       <p class="pt-3 almost-gray"> {{$orcamento->Descricao}}.</p>
+     </div>
+     <!-- Invoice assets and total -->
+          <div class="offset-1 col-5 mb-3 pr-4 sub-table">
+            <table class="table table-borderless">
+              <tbody>
+                <tr>
+                  <th scope="row gray-ish">Subtotal</th>
+                  <td class="text-right">R$ {{$total2}} </td>
+                </tr>
+             
+                <tr>
+                  <th scope="row gray-ish">Taxas*</th>
+                  <td class="text-right">R$ {{$taxa = $orcamento->Taxas}} </td>
+                </tr>
+                <tr>
+                  <th scope="row gray-ish">Desconto</th>
+                  <td class="text-right">R$ {{$desconto = $orcamento->Desconto}} </td>
+                </tr>
+                <tr class="last-row">
+                    <th scope="row"><h4>Total</h4></th>
+                    <td class="text-right"><h4></h4></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+     </div>
+    <p class="text-center pb-3"><em> Obrigado pela preferência.</em></p>
+  </div>

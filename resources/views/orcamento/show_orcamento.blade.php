@@ -100,7 +100,7 @@
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>
         </button>
           <div class="product-cell image">
-          <a href="{{asset('/orcamento/edit/')}}/{{$order->Numero_Orcamento}}">
+          <a href="{{asset('/orcamento/edit/')}}/{{$order->id}}">
              <img src="{{asset('/img/empresa/')}}/{{$order->empresa_cliente->image}}" > </a>
          
     
@@ -126,11 +126,14 @@
   <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle btn-info edit-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     Gerar PDF
   </button>
-  <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-    <!-- <a class="dropdown-item" href="{{asset('/orcamento/modelos/modelo1/')}}/{{$order->id}}">Modelo 1</a> -->
-    <!-- <a class="dropdown-item" href="{{asset('/orcamento/modelos/modelo2/')}}/{{$order->id}}">Modelo 2</a> -->
-    <a class="dropdown-item" href="{{asset('/orcamento/modelos/modelo3/')}}/{{$order->id}}">Modelo 1</a>
-    <a class="dropdown-item" href="{{asset('/orcamento/modelos/modelo4/')}}/{{$order->id}}">Modelo 2</a>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+    <a class="dropdown-item" href="{{asset('/orcamento/modelos/modelo1/')}}/{{$order->id}}">Modelo 1</a>
+    <a class="dropdown-item" href="{{asset('/orcamento/modelos/modelo2/')}}/{{$order->id}}">Modelo 2</a>
+    <a class="dropdown-item" href="{{asset('/orcamento/modelos/modelo3/')}}/{{$order->id}}">Modelo 3</a>
+    <a class="dropdown-item" href="{{asset('/orcamento/modelos/modelo4/')}}/{{$order->id}}">Modelo 4</a>
+    <a class="dropdown-item" href="{{asset('/orcamento/modelos/modelo5/')}}/{{$order->id}}">Modelo 5</a>
+    <a class="dropdown-item active" href="{{asset('/orcamento/modelos/modelo6/')}}/{{$order->id}}">Modelo 6</a>
   </div>
 </div>
 

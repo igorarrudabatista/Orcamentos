@@ -89,6 +89,8 @@ Route::get('/orcamento/modelos/modelo1/{id}',     [OrcamentoController::class, '
 Route::get('/orcamento/modelos/modelo2/{id}',     [OrcamentoController::class, 'modelo2']);
 Route::get('/orcamento/modelos/modelo3/{id}',     [OrcamentoController::class, 'modelo3']);
 Route::get('/orcamento/modelos/modelo4/{id}',     [OrcamentoController::class, 'modelo4']);
+Route::get('/orcamento/modelos/modelo5/{id}',     [OrcamentoController::class, 'modelo5']);
+Route::get('/orcamento/modelos/modelo6/{id}',     [OrcamentoController::class, 'modelo6']);
 
 // Informações
 Route::get('/informacoes',                        [InfoController::class, 'home']);

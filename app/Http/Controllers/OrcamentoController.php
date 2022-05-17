@@ -44,21 +44,21 @@ class OrcamentoController extends Controller
 
     public function store(Request $request)
     {
-        toast('Orçamento criado com sucesso!','success');
-
-       // dd($request->all());
-       $order = Orcamento::create($request->all());
-
-
-
-         $products = $request->input('products', []);
-         $quantities = $request->input('quantities', []);
-         for ($product=0; $product < count($products); $product++) {
-             if ($products[$product] != '') {
-                 $order->produto()->attach($products[$product], ['Quantidade' => $quantities[$product]]);
-             }
-         }
         
+        // dd($request->all());
+        $order = Orcamento::create($request->all());
+        
+        
+        
+        $products = $request->input('products', []);
+        $quantities = $request->input('quantities', []);
+        for ($product=0; $product < count($products); $product++) {
+            if ($products[$product] != '') {
+                $order->produto()->attach($products[$product], ['Quantidade' => $quantities[$product]]);
+            }
+        }
+        
+        toast('Orçamento criado com sucesso!','success');
        
     
         return redirect('/orcamento/show_orcamento');
@@ -120,25 +120,25 @@ class OrcamentoController extends Controller
 
     public function update(Request $request)
     {
-        toast('Orçamento editado com sucesso!','success');
-
-
-       Orcamento::findOrFail($request->id)->update();
-
-     // Orcamento::findOrFail($request->id) -> update();
-
-        $Orcamento = Orcamento::create($request->all());
-
-
-
-         $products = $request->input('products', []);
-         $quantities = $request->input('quantities', []);
-         for ($product=0; $product < count($products); $product++) {
-             if ($products[$product] != '') {
-                 $Orcamento->produto()->attach($products[$product], ['Quantidade' => $quantities[$product]]);
-             }
-         }
         
+       $Orcamento = Orcamento::create($request->all());
+        
+       Orcamento::findOrFail($request->id)->update($request->all());
+       
+       // Orcamento::findOrFail($request->id) -> update();
+       
+
+       
+       
+       $products = $request->input('products', []);
+       $quantities = $request->input('quantities', []);
+       for ($product=0; $product < count($products); $product++) {
+           if ($products[$product] != '') {
+               $Orcamento->produto()->attach($products[$product], ['Quantidade' => $quantities[$product]]);
+            }
+        }
+        
+        toast('Orçamento editado com sucesso!','success');
 
         return redirect('/orcamento/show_orcamento');
     }
@@ -274,6 +274,60 @@ class OrcamentoController extends Controller
 
 
         return view('orcamento.modelos.modelo4', [
+            'empresa_cliente' => $empresa_cliente,
+            'orcamento'       => $orcamento,
+            'minha_empresa'   => $minha_empresa,
+            'produto'         => $produto,
+           // 'orders'          => $orders,
+
+        ]);
+    }
+    public function modelo5($id)
+    {
+        $orcamento = Orcamento::with('produto')->findOrFail($id);
+        // dd($orcamento->produto[0]->Nome_Produto);
+       //dd($orcamento->Empresa_cliente);
+      
+        
+       // $orders = $orcamento::with('produto')->get();
+        $empresa_cliente = Empresa_cliente::all();
+
+        $minha_empresa = Empresa::all();
+
+        $produto = Produto::all();
+
+
+
+
+
+        return view('orcamento.modelos.modelo5', [
+            'empresa_cliente' => $empresa_cliente,
+            'orcamento'       => $orcamento,
+            'minha_empresa'   => $minha_empresa,
+            'produto'         => $produto,
+           // 'orders'          => $orders,
+
+        ]);
+    }
+    public function modelo6($id)
+    {
+        $orcamento = Orcamento::with('produto')->findOrFail($id);
+        // dd($orcamento->produto[0]->Nome_Produto);
+       //dd($orcamento->Empresa_cliente);
+      
+        
+       // $orders = $orcamento::with('produto')->get();
+        $empresa_cliente = Empresa_cliente::all();
+
+        $minha_empresa = Empresa::all();
+
+        $produto = Produto::all();
+
+
+
+
+
+        return view('orcamento.modelos.modelo6', [
             'empresa_cliente' => $empresa_cliente,
             'orcamento'       => $orcamento,
             'minha_empresa'   => $minha_empresa,

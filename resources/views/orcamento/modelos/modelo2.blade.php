@@ -36,13 +36,12 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
 
-    <title>Document</title>
+    <title>Orçamento</title>
 </head>
 
 <body>
 <div class="container">
     <div class="page-header">
-        <h1>Invoice Template </h1>
     </div>
     <div class="container">
         <div class="row">
@@ -51,16 +50,20 @@
                     <div class="row">
                         <div class="col-md-4"> <img class="img" alt="Invoce Template" src="http://pngimg.com/uploads/shopping_cart/shopping_cart_PNG59.png" /> </div>
                         <div class="col-md-8 text-right">
-                            <h4 style="color: #F81D2D;"><strong>BBBootstrap</strong></h4>
-                            <p>221 ,Baker Street</p>
-                            <p>1800-234-124</p>
-                            <p>example@gmail.com</p>
+                            <h4 style="color: #F81D2D;"><strong>{{$orcamento->empresa->Nome_Empresa ?? ''}} </strong></h4>
+                            <p>{{$orcamento->empresa->Endereco ?? ''}}</p>
+                            <p>{{$orcamento->empresa->Cidade ?? ''}}</p>
+                            <p>{{$orcamento->empresa->Cnpj ?? ''}}</p>
+                            <p>{{$orcamento->empresa->Telefone ?? ''}}</p>
+                            <p>{{$orcamento->empresa->Email ?? ''}}</p>
+                            <p>{{$orcamento->empresa->Site ?? ''}}</p>
+
                         </div>
                     </div> <br />
                     <div class="row">
                         <div class="col-md-12 text-center">
-                            <h2>INVOICE</h2>
-                            <h5>04854654101</h5>
+                            <h2>ORÇAMENTO</h2>
+                            <h5>#{{$orcamento->Numero_Orcamento ?? ''}}</h5>
                         </div>
                     </div> <br />
                     <div>
@@ -68,42 +71,48 @@
                             <thead>
                                 <tr>
                                     <th>
-                                        <h5>Description</h5>
+                                        <h5>Descrição</h5>
                                     </th>
+ 
                                     <th>
-                                        <h5>Amount</h5>
+                                        <h5>Quantidade</h5>
+                                    </th>
+
+                                    <th>
+                                        <h5>Preço </h5>
+                                    </th>
+
+                                    <th>
+                                        <h5>Total</h5>
                                     </th>
                                 </tr>
                             </thead>
+                            <?php $total2 = 0 ;?>
+
+                            @foreach($orcamento->produto as $item)
                             <tbody>
                                 <tr>
-                                    <td class="col-md-9">Samsung Galaxy 8 64 GB</td>
-                                    <td class="col-md-3"><i class="fas fa-rupee-sign" area-hidden="true"></i> 50,000 </td>
+                                    <td class="col-md-3">{{$item->Nome_Produto}}</td>
+                                    <td class="col-md-3">{{$quantidade = $item->pivot['Quantidade'] }}</td>
+                                    <td class="col-md-3">{{$preco= $item['Preco_Produto']}} </td>
+
+
+                                    <td class="col-md-3">
+                                        R$ {{$total1 = $preco * (int)$quantidade}} <?php $total2 += $total1; ?>  </td>
                                 </tr>
-                                <tr>
-                                    <td class="col-md-9">JBL Bluetooth Speaker</td>
-                                    <td class="col-md-3"><i class="fas fa-rupee-sign" area-hidden="true"></i> 5,200 </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-9">Apple Iphone 6s 16GB</td>
-                                    <td class="col-md-3"><i class="fas fa-rupee-sign" area-hidden="true"></i> 25,000 </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-9">MI Smartwatch 2</td>
-                                    <td class="col-md-3"><i class="fas fa-rupee-sign" area-hidden="true"></i> 2,200 </td>
-                                </tr>
+                         
+                                @endforeach
+
                                 <tr>
                                     <td class="text-right">
-                                        <p> <strong>Shipment and Taxes:</strong> </p>
-                                        <p> <strong>Total Amount: </strong> </p>
-                                        <p> <strong>Discount: </strong> </p>
-                                        <p> <strong>Payable Amount: </strong> </p>
+                                        <p> <strong>Subtotal:</strong> </p>
+                                        <p> <strong>Taxas: </strong> </p>
+                                        <p> <strong>Descontos: </strong> </p>
                                     </td>
                                     <td>
-                                        <p> <strong><i class="fas fa-rupee-sign" area-hidden="true"></i> 500 </strong> </p>
-                                        <p> <strong><i class="fas fa-rupee-sign" area-hidden="true"></i> 82,900</strong> </p>
-                                        <p> <strong><i class="fas fa-rupee-sign" area-hidden="true"></i> 3,000 </strong> </p>
-                                        <p> <strong><i class="fas fa-rupee-sign" area-hidden="true"></i> 79,900</strong> </p>
+                                        <p> <strong>R$ {{$total2}} </strong> </p>
+                                        <p> <strong>R$ {{$taxa = $orcamento->Taxas}} </strong> </p>
+                                        <p> <strong>R$ {{$desconto = $orcamento->Desconto}}  </strong> </p>
                                     </td>
                                 </tr>
                                 <tr style="color: #F81D2D;">
@@ -111,16 +120,19 @@
                                         <h4><strong>Total:</strong></h4>
                                     </td>
                                     <td class="text-left">
-                                        <h4><strong><i class="fas fa-rupee-sign" area-hidden="true"></i> 79,900 </strong></h4>
+                                        <h4><strong>R$ {{$total = $total2 + $taxa - $desconto}} </strong></h4>
                                     </td>
                                 </tr>
+
                             </tbody>
+
                         </table>
                     </div>
                     <div>
                         <div class="col-md-12">
-                            <p><b>Date :</b> 6 June 2019</p> <br />
-                            <p><b>Signature</b></p>
+                            <p><b>Data do Orçamento:</b> {{$orcamento->Data ?? ''}} </p> 
+                            <p><b>Validade :</b> {{$orcamento->Validade ?? ''}} dias </p> 
+                            <p><b>Garantia: {{$orcamento->Garantia ?? ''}} dias </b></p>
                         </div>
                     </div>
                 </div>
