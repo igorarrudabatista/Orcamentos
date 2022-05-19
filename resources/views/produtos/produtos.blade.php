@@ -10,10 +10,9 @@
     <a href="{{asset('/produtos/produtos')}}">
       <button class="btn">Limpar pesquisa</button> </a>
       @else
-      <h1 class="app-content-headerText">Lista de todos os Produtos</h1>
+      <h1 class="app-content-headerText">Produtos</h1>
 
       @endif
-    <h1 class="app-content-headerText">Produtos</h1>
     <button class="mode-switch" title="Switch Theme">
       <svg class="moon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="24" height="24" viewBox="0 0 24 24">
         <defs></defs>
