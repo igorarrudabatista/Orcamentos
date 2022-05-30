@@ -1,12 +1,17 @@
 ## Sistema de Orçamento -
 - **Laravel / Blade / jetstream Livewire**
-- **Exportação em PDF - 6 modelos 
+- **Exportação em PDF - 6 modelos** 
 - **Banco de dados Mysql**
 - **Bootstrap**
 - **Java Script**
 - **HTML**
 - **CSS**
 <hr>
+
+## Sobre o sistema:
+- Cadastro de Clientes, Produtos, usuários, 
+- Emissão de orçamento
+- 
 
 <p align="center"> TELA DE LOGIN <img src="https://github.com/igorarrudabatista/Imagens/blob/main/imagem_2022-05-30_161606930.png" />
 <p align="center"> DASHBOARD<img src="https://github.com/igorarrudabatista/Imagens/blob/main/imagem_2022-05-30_161622339.png" />
