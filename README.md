@@ -1,4 +1,4 @@
-## Sistema de Orçamento - (Exportar consulta SQL para arquivo .CSV)
+## Sistema de Orçamento -
 - **Laravel / Blade / jetstream Livewire**
 - **Exportação em PDF - 6 modelos 
 - **Banco de dados Mysql**
@@ -10,7 +10,7 @@
 
 <p align="center"> TELA DE LOGIN <img src="https://github.com/igorarrudabatista/Imagens/blob/main/imagem_2022-05-30_161606930.png" />
 <p align="center"> DASHBOARD<img src="https://github.com/igorarrudabatista/Imagens/blob/main/imagem_2022-05-30_161622339.png" />
-<p align="center"> Minha Empresa <img src="https://github.com/igorarrudabatista/Imagens/blob/main/imagem_2022-05-30_161638225.png" />
+<p align="center"> MINHA EMPRESA <img src="https://github.com/igorarrudabatista/Imagens/blob/main/imagem_2022-05-30_161638225.png" />
 <p align="center"> CADASTRO DE CLIENTES <img src="https://github.com/igorarrudabatista/Imagens/blob/main/imagem_2022-05-30_161710788.png" />
 <p align="center"> VISUALIZAR CLIENTES <img src="https://github.com/igorarrudabatista/Imagens/blob/main/imagem_2022-05-30_161807155.png" />
 <p align="center"> USUÁRIOS CADASTRADOS  <img src="https://github.com/igorarrudabatista/Imagens/blob/main/imagem_2022-05-30_161819606.png" />
@@ -21,13 +21,11 @@
 <p align="center"> MODELO PDF 1 <img src="https://github.com/igorarrudabatista/Imagens/blob/main/imagem_2022-05-30_162438063.png" />
 <p align="center"> MODELO PDF 2  <img src="https://github.com/igorarrudabatista/Imagens/blob/main/imagem_2022-05-30_162454242.png" />
 <p align="center"> MODELO PDF 3  <img src="https://github.com/igorarrudabatista/Imagens/blob/main/imagem_2022-05-30_162509721.png" />
-<p align="center"> MODELO PDF 4  <img src="https://github.com/igorarrudabatista/Imagens/blob/main/imagem_2022-05-30_162531570.png" />
-<p align="center"> MODELO PDF 5  <img src="" />
+<p align="center"> MODELO PDF 4  <img src="https://github.com/igorarrudabatista/Imagens/blob/main/imagem_2022-05-30_165702012.png" />
+<p align="center"> MODELO PDF 5  <img src="https://github.com/igorarrudabatista/Imagens/blob/main/imagem_2022-05-30_162531570.png" />
+<p align="center"> SUPORTE / INFORMAÇÕES  <img src="https://github.com/igorarrudabatista/Imagens/blob/main/imagem_2022-05-30_162637917.png" />
 
 
-    
-    
-    
     
     
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
